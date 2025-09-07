@@ -13,6 +13,17 @@
 \* not quantized, missing some sglang config
 
 
+|                        | Quantization Method        |                | MMLU-Pro      |                |               |                |
+|------------------------|----------------------------|----------------|---------------|----------------|---------------|----------------|
+|                        |                            | Level 1 (5307) | Level 2 (663) | Level 3 (1645) | Level 4 (941) | Level 5 (3476) |
+| Qwen3-4B-Instruct-2507 |                            | 100%           | 100%          | 100%           | 0%            | 23.42%         |
+| Qwen3-4B-Thinking-2507 |                            | 100%           | 100%          | 100%           | 100%          | 0%             |
+| Qwen3-Instruct-2507    | Gemlite-4Bits-per-channel* | 100%           | 100%          | 72.4%          | 41.45%        | 23.56%         |
+|                        | GPTQ-4Bits-per-channel     | 100%           | 100%          | 37.63%         | 39.63%        | 21.52%         |
+|                        | AutoRound-Best             | 100%           | 100%          | 50.03%         | 37.94%        | 22.07%         |
+|                        | AutoRound-RTN              | 100%           | 0.0%          | 54.47%         | 33.9%         | 20.97%         |
+
+
 - [AutoRoundBest](https://huggingface.co/seba/Qwen3-4B-Instruct-2507-AutoRound-Best-Channel): `auto-round --model Qwen/Qwen3-4B-Instruct-2507 --bits 4 --iters 1000 --output_dir Qwen3-4B-Instruct-2507-AutoRound-Best --format auto_gptq --group_size -1  --nsamples 512 --scale_dtype bf16 --model_dtype bf16 --enable_torch_compile --data_type int  --seqlen 4096 `
 - [AutoRoundRTN](https://huggingface.co/seba/Qwen3-4B-Instruct-2507-AutoRound-RTN-Channel): `auto-round --model Qwen/Qwen3-4B-Instruct-2507 --bits 4 --iters 0 --output_dir Qwen3-4B-Instruct-2507-AutoRound-RTN --format auto_gptq --group_size -1`
 - [GPTQ](https://huggingface.co/seba/Qwen3-4B-Instruct-2507-GPTQ-4-bits-Channel)
